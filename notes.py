@@ -17,20 +17,22 @@ def add_note(add):
     notes.append(add)
     save_notes(notes)
 
-if len(sys.argv) < 2:
-    print("Укажите команду: add или list")
-elif sys.argv[1] == "add":
+if __name__ == "__main__":
+
+    if len(sys.argv) < 2:
+        print("Укажите команду: add или list")
+    elif sys.argv[1] == "add":
         if len(sys.argv) < 3:
             print("Ошибка: укажите текст заметки после команды add")
         else:
             add_note(sys.argv[2])
-elif sys.argv[1] == "list":
-    notes = load_notes()
+    elif sys.argv[1] == "list":
+        notes = load_notes()
 
-    if not notes:
-        print("Список заметок пуст")
+        if not notes:
+            print("Список заметок пуст")
+        else:
+            for index, note in enumerate(notes, start=1):
+                print(f"{index}, {note}")
     else:
-        for index, note in enumerate(notes, start=1):
-            print(f"{index}, {note}")
-else:
-    print("Неизвестная команда")
+        print("Неизвестная команда")
